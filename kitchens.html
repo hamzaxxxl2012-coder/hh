@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>المطابخ</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+img { height: 220px; object-fit: cover; }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container ms-1">
+        
+        
+        
+        <a class="navbar-brand ms-3">Mashhour Kitchens</a>
+        
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="menu">
+        
+        <ul class="navbar-nav ms-auto">
+        
+        <li class="nav-item">
+        <a class="nav-link" href="index.html">الرئيسية</a>
+        </li>
+        
+
+        
+        <li class="nav-item">
+        <a class="nav-link" href="windows.html">الشبابيك</a>
+        </li>
+
+
+             
+   
+
+            <li class="nav-item">
+                <a class="nav-link" href="path.html">وحدات الحمام</a>
+                </li>
+
+        </ul>
+        
+        </div>
+        
+        </div>
+    </nav>
+<nav class="navbar navbar-dark bg-dark mb-4">
+<div class="container">
+<a href="index.html" class="btn btn-light me-1">⬅ رجوع</a>
+<span class="navbar-brand mx-auto ms-5">معرض المطابخ</span>
+</div>
+</nav>
+</div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ابرز المطابخ
+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+background-color: #f5f5f5;
+}
+.gallery-img {
+cursor: pointer;
+transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-img:hover {
+transform: scale(1.05);
+box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+<body>
+
+<!-- الجزء الخاص بعرض الصور والمودال -->
+<div class="container mt-4">
+    <h2 class="text-center mb-4">ابرز المطابخ</h2>
+    <!-- شبكة الصور -->
+    <div class="row g-3" id="galleryContainer"></div>
+
+    <!-- نافذة التكبير (Modal) -->
+    <div class="modal fade" id="imgModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark border-0">
+                <div class="modal-body p-0 d-flex align-items-center justify-content-between">
+                    <!-- سهم اليسار -->
+                    <button class="btn text-white fs-1 px-4" onclick="moveImg(-1)" style="z-index: 10;">❮</button>
+                    
+                    <div class="position-relative w-100 text-center">
+                        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
+                        <img src="" id="displayImg" class="img-fluid rounded shadow">
+                    </div>
+
+                    <!-- سهم اليمين -->
+                    <button class="btn text-white fs-1 px-4" onclick="moveImg(1)" style="z-index: 10;">❯</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const total = 99; // عدد الصور
+    const container = document.getElementById('galleryContainer');
+    const displayImg = document.getElementById('displayImg');
+    let currentIdx = 1;
+
+    // 1. إنشاء أكواد الـ 90 صورة تلقائياً بنفس التنسيق الذي طلبته
+    let galleryHTML = '';
+    for (let i = 1; i <= total; i++) {
+        galleryHTML += `
+            <div class="col-6 col-md-3">
+                <img src="${i}.jpeg" class="img-fluid rounded border shadow-sm" 
+                     style="cursor:pointer; height:200px; object-fit:cover; width:100%"
+                     data-bs-toggle="modal" data-bs-target="#imgModal" 
+                     onclick="setImg(${i})">
+            </div>`;
+    }
+    container.innerHTML = galleryHTML;
+
+    // 2. وظيفة التكبير
+    function setImg(n) {
+        currentIdx = n;
+        displayImg.src = n + ".jpeg";
+    }
+
+    // 3. وظيفة الأسهم (يمين وشمال)
+    function moveImg(step) {
+        currentIdx += step;
+        if (currentIdx > total) currentIdx = 1;
+        if (currentIdx < 1) currentIdx = total;
+        displayImg.src = currentIdx + ".jpeg";
+    }
+
+    // دعم أسهم الكيبورد للتسهيل
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "ArrowLeft") moveImg(-1);
+        if (e.key === "ArrowRight") moveImg(1);
+    });
+</script>
+
+<!-- Modal تكبير الصورة -->
+<div class="modal fade" id="imageModal" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered modal-lg">
+<div class="modal-content">
+<div class="modal-body p-0">
+<img id="modalImage" src="" class="img-fluid w-100">
+</div>
+</div>
+</div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript -->
+<script>
+function showImage(src) {
+document.getElementById("modalImage").src = src;
+}
+</script>
+
+</body>
+</html>
